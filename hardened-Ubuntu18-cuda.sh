@@ -13,6 +13,28 @@ debian_upgrade
 
 sudo apt-get install -y curl wget mc joe tmux p7zip-full libsm6 libxext6 libxrender-dev
 
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+sudo add-apt-repository "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /"
+sudo apt-get update
+sudo apt-get -y install cuda
+
+#Install the NVIDIA Machine Learning network repository installation package.
+os=ubuntu1804
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/${os}/x86_64/nvidia-machine-learning-repo-${os}_1.0.0-1_amd64.deb
+
+sudo dpkg -i nvidia-machine-learning-repo-*.deb
+sudo apt-get update
+# Install the TensorRT package that fits your particular needs.
+# For only running TensorRT C++ applications:
+sudo apt-get install libnvinfer7 libnvonnxparsers7 libnvparsers7 libnvinfer-plugin7
+# For also building TensorRT C++ applications:
+sudo apt-get install libnvinfer-dev libnvonnxparsers-dev
+ libnvparsers-dev libnvinfer-plugin-dev
+# For running TensorRT Python applications:
+sudo apt-get install python-libnvinfer python3-libnvinfer
+
 secure_server "$SSUSER" "$SSPASSWORD" "$SSPUBKEY"
 enable_passwordless_sudo "$SSUSER"
 
