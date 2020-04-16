@@ -1,23 +1,16 @@
 #!/bin/bash
-#
-#
-#<UDF name="ssuser" Label="Sudo user username?" example="username" />
-#<UDF name="sspassword" Label="Sudo user password?" example="strongPassword" />
-#<UDF name="sspubkey" Label="SSH pubkey (installed for root and sudo user)?" example="ssh-rsa ..." />
-
-# include StackScript Bash Library
-source <ssinclude StackScriptID=1>
-
-system_update
-debian_upgrade
-
-sudo apt-get install -y curl wget mc joe tmux p7zip-full libsm6 libxext6 libxrender-dev
 
 secure_server "$SSUSER" "$SSPASSWORD" "$SSPUBKEY"
 enable_passwordless_sudo "$SSUSER"
 
 cp /root/.ssh/authorized_keys /home/$SSUSER/.ssh/authorized_keys
 chown $SSUSER.$SSUSER -R /home/$SSUSER/.ssh
+
+system_update
+debian_upgrade
+
+sudo apt-get install -y curl wget mc joe tmux p7zip-full libsm6 libxext6 libxrender-dev
+
 
 su - $SSUSER
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh

@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 #
 #<UDF name="ssuser" Label="Sudo user username?" example="username" />
