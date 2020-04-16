@@ -53,7 +53,6 @@ pathlib \
 opencv-python \
 dm-tree \
 lz4 \
-tensorflow \
 https://ray-wheels.s3-us-west-2.amazonaws.com/master/780c1c3b08d473ffa42b232586dfdbc0a0af54af/ray-0.9.0.dev0-cp37-cp37m-manylinux1_x86_64.whl \
 ray[tune] \
 ray[rllib]
