@@ -5,9 +5,6 @@
 #<UDF name="sspassword" Label="Sudo user password?" example="strongPassword" />
 #<UDF name="sspubkey" Label="SSH pubkey (installed for root and sudo user)?" example="ssh-rsa ..." />
 
-# include StackScript Bash Library
-source <ssinclude StackScriptID=1>
-
 system_update
 debian_upgrade
 
